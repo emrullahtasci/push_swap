@@ -1,0 +1,25 @@
+/* ************************************************************************** */
+/*                                                                            */
+/*                                                        :::      ::::::::   */
+/*   stack_new.c                                        :+:      :+:    :+:   */
+/*                                                    +:+ +:+         +:+     */
+/*   By: etasci <etasci@student.42kocaeli.com.tr    +#+  +:+       +#+        */
+/*                                                +#+#+#+#+#+   +#+           */
+/*   Created: 2026/03/24 05:04:40 by etasci            #+#    #+#             */
+/*   Updated: 2026/03/24 05:07:01 by etasci           ###   ########.fr       */
+/*                                                                            */
+/* ************************************************************************** */
+
+#include "../push_swap.h"
+#include <stdlib.h>
+
+t_node *stack_new(int value)
+{
+	t_node *node;
+	node = malloc(sizeof(t_node));
+	if (!node)
+	return (NULL);
+	node ->value = value;
+	node ->index = -1;
+	node ->next = NULL;
+}
