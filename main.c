@@ -6,7 +6,7 @@
 /*   By: etasci <etasci@student.42kocaeli.com.tr    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2026/03/24 21:02:45 by etasci            #+#    #+#             */
-/*   Updated: 2026/03/24 21:10:50 by etasci           ###   ########.fr       */
+/*   Updated: 2026/03/24 21:13:02 by etasci           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -60,3 +60,41 @@ static char	*strategy_complexity(t_node *a, t_config *cfg)
 		return ("O(n*sqrt(n))");
 	return ("O(n log n)");
 }
+
+int	main(int argc, char **argv)
+{
+	t_node *a;
+	t_node *b;
+	t_ops ops;
+	t_config cfg;
+	double disorder;
+	char *name;
+	char *complexity;
+
+	if (argc < 2)
+		return (0);
+	a = parse_args(argc, argv, &cfg);
+	if (!a)
+		return (0);
+	b = NULL;
+	ops.sa = 0;
+	ops.sb = 0;
+	ops.ss = 0;
+	ops.pa = 0;
+	ops.pb = 0;
+	ops.ra = 0;
+	ops.rb = 0;
+	ops.rr = 0;
+	ops.rra = 0;
+	ops.rrb = 0;
+	ops.rrr = 0;
+	ops.total = 0;
+	assign_index(a);
+	disorder = compute_disorder(a);
+	name = strategy_name(&cfg);
+	complexity = strategy_complexity(a, &cfg);
+	run_strategy(&a, &b, &ops, &cfg);
+	if (cfg.bench)
+		print_benchmark(disorder, name, complexity, &ops);
+	free_stack(&a);
+	free_stack(&b);
