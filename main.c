@@ -6,7 +6,7 @@
 /*   By: etasci <etasci@student.42kocaeli.com.tr    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2026/03/24 21:02:45 by etasci            #+#    #+#             */
-/*   Updated: 2026/03/24 21:02:48 by etasci           ###   ########.fr       */
+/*   Updated: 2026/03/24 21:07:05 by etasci           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -30,4 +30,15 @@ static void	run_strategy(t_node **a, t_node **b, t_ops *ops, t_config *cfg)
 	else
 		adaptive_sort(a, b, ops);
 	(void)disorder;
+}
+
+static char	*strategy_name(t_config *cfg)
+{
+	if (cfg->strategy == SIMPLE)
+		return ("Simple");
+	if (cfg->strategy == MEDIUM)
+		return ("Medium");
+	if (cfg->strategy == COMPLEX)
+		return ("Complex");
+	return ("Adaptive");
 }
