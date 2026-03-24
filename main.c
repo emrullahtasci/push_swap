@@ -6,7 +6,7 @@
 /*   By: etasci <etasci@student.42kocaeli.com.tr    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2026/03/24 21:02:45 by etasci            #+#    #+#             */
-/*   Updated: 2026/03/24 21:07:05 by etasci           ###   ########.fr       */
+/*   Updated: 2026/03/24 21:10:50 by etasci           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -41,4 +41,22 @@ static char	*strategy_name(t_config *cfg)
 	if (cfg->strategy == COMPLEX)
 		return ("Complex");
 	return ("Adaptive");
+}
+
+static char	*strategy_complexity(t_node *a, t_config *cfg)
+{
+	double	disorder;
+
+	if (cfg->strategy == SIMPLE)
+		return ("O(n^2)");
+	if (cfg->strategy == MEDIUM)
+		return ("O(n*sqrt(n))");
+	if (cfg->strategy == COMPLEX)
+		return ("O(n log n)");
+	disorder = compute_disorder(a);
+	if (disorder < 0.2)
+		return ("O(n^2)");
+	if (disorder < 0.5)
+		return ("O(n*sqrt(n))");
+	return ("O(n log n)");
 }
