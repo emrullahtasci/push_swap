@@ -6,7 +6,7 @@
 /*   By: etasci <etasci@student.42kocaeli.com.tr    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2026/03/24 19:46:07 by etasci            #+#    #+#             */
-/*   Updated: 2026/03/24 19:46:49 by etasci           ###   ########.fr       */
+/*   Updated: 2026/03/25 16:40:17 by etasci           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -15,7 +15,7 @@
 double	compute_disorder(t_node *a)
 {
 	t_node	*i;
-	t_node   *j;
+	t_node	*j;
 	int		mistakes;
 	int		total_pairs;
 
