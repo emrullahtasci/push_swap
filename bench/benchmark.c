@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   benchmark.c                                        :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: etasci <etasci@student.42kocaeli.com.tr    +#+  +:+       +#+        */
+/*   By: mkotan <mkotan@student.42kocaeli.com.tr    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2026/03/24 17:45:08 by etasci            #+#    #+#             */
-/*   Updated: 2026/03/25 17:04:43 by etasci           ###   ########.fr       */
+/*   Updated: 2026/03/25 17:18:51 by mkotan           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -58,20 +58,8 @@ static void	write_percent(double d)
 	free(s);
 }
 
-void	print_benchmark(double disorder, char *name, char *complexity,
-		t_ops *ops)
+static void	write_ops(t_ops *ops)
 {
-	write(2, "[bench] disorder: ", 18);
-	write_percent(disorder);
-	write(2, "%\n", 2);
-	write(2, "[bench] strategy: ", 18);
-	write_str(name);
-	write(2, " / ", 3);
-	write_str(complexity);
-	write(2, "\n", 1);
-	write(2, "[bench] total_ops: ", 19);
-	write_int(ops->total);
-	write(2, "\n", 1);
 	write(2, "[bench] sa: ", 12);
 	write_int(ops->sa);
 	write(2, "  sb: ", 6);
@@ -96,4 +84,21 @@ void	print_benchmark(double disorder, char *name, char *complexity,
 	write(2, "  rrr: ", 7);
 	write_int(ops->rrr);
 	write(2, "\n", 1);
+}
+
+void	print_benchmark(double disorder, char *name, char *complexity,
+		t_ops *ops)
+{
+	write(2, "[bench] disorder: ", 18);
+	write_percent(disorder);
+	write(2, "%\n", 2);
+	write(2, "[bench] strategy: ", 18);
+	write_str(name);
+	write(2, " / ", 3);
+	write_str(complexity);
+	write(2, "\n", 1);
+	write(2, "[bench] total_ops: ", 19);
+	write_int(ops->total);
+	write(2, "\n", 1);
+	write_ops(ops);
 }
