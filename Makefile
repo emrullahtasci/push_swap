@@ -6,10 +6,9 @@
 #    By: mkotan <mkotan@student.42kocaeli.com.tr    +#+  +:+       +#+         #
 #                                                 +#+#+#+#+#+   +#+            #
 #    Created: 2026/03/11 22:57:31 by mkotan            #+#    #+#              #
-#    Updated: 2026/03/25 17:33:30 by mkotan           ###   ########.fr        #
+#    Updated: 2026/03/25 19:44:33 by mkotan           ###   ########.fr        #
 #                                                                              #
 # **************************************************************************** #
-
 
 NAME = push_swap
 CC = cc
@@ -51,11 +50,12 @@ all: $(NAME)
 $(NAME): $(OBJ) $(LIBFT)
 	$(CC) $(CFLAGS) $(OBJ) $(LIBFT) -o $(NAME)
 
+# 🔥 BURASI ÖNEMLİ
+$(LIBFT):
+	@make -C libft
+
 %.o: %.c push_swap.h
 	$(CC) $(CFLAGS) -c $< -o $@
-
-libft:
-	@make -C libft
 
 clean:
 	rm -f $(OBJ)
@@ -67,4 +67,4 @@ fclean: clean
 
 re: fclean all
 
-.PHONY: all clean fclean re libft
+.PHONY: all clean fclean re
