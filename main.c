@@ -6,7 +6,7 @@
 /*   By: etasci <etasci@student.42kocaeli.com.tr    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2026/03/24 21:02:45 by etasci            #+#    #+#             */
-/*   Updated: 2026/03/25 15:58:31 by etasci           ###   ########.fr       */
+/*   Updated: 2026/03/25 16:28:53 by etasci           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -63,13 +63,13 @@ static char	*strategy_complexity(t_node *a, t_config *cfg)
 
 int	main(int argc, char **argv)
 {
-	t_node *a;
-	t_node *b;
-	t_ops ops;
-	t_config cfg;
-	double disorder;
-	char *name;
-	char *complexity;
+	t_node		*a;
+	t_node		*b;
+	t_ops		ops;
+	t_config	cfg;
+	double		disorder;
+	char		*name;
+	char		*complexity;
 
 	if (argc < 2)
 		return (0);
