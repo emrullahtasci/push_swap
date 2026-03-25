@@ -6,7 +6,7 @@
 /*   By: etasci <etasci@student.42kocaeli.com.tr    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2026/03/24 21:02:45 by etasci            #+#    #+#             */
-/*   Updated: 2026/03/24 21:13:02 by etasci           ###   ########.fr       */
+/*   Updated: 2026/03/25 15:58:31 by etasci           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -98,3 +98,4 @@ int	main(int argc, char **argv)
 		print_benchmark(disorder, name, complexity, &ops);
 	free_stack(&a);
 	free_stack(&b);
+}
