@@ -6,10 +6,9 @@
 /*   By: etasci <etasci@student.42kocaeli.com.tr    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2026/03/24 18:13:37 by etasci            #+#    #+#             */
-/*   Updated: 2026/03/24 18:14:02 by etasci           ###   ########.fr       */
+/*   Updated: 2026/03/25 16:00:40 by etasci           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
-
 
 #include "push_swap.h"
 
@@ -41,7 +40,6 @@ void	radix_sort(t_node **a, t_node **b, t_ops *ops)
 	if (is_sorted(*a))
 		return ;
 	size = stack_size(*a);
-
 	if (size <= 100)
 	{
 		chunk_sort(a, b, ops);
