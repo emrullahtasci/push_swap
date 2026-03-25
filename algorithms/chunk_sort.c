@@ -3,14 +3,14 @@
 /*                                                        :::      ::::::::   */
 /*   chunk_sort.c                                       :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: etasci <etasci@student.42kocaeli.com.tr    +#+  +:+       +#+        */
+/*   By: mkotan <mkotan@student.42kocaeli.com.tr    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2026/03/24 18:07:24 by etasci            #+#    #+#             */
-/*   Updated: 2026/03/25 16:37:20 by etasci           ###   ########.fr       */
+/*   Updated: 2026/03/25 17:18:04 by mkotan           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
-#include "push_swap.h"
+#include "../push_swap.h"
 
 t_node	*find_max(t_node *stack)
 {
@@ -40,37 +40,6 @@ int	node_position(t_node *stack, t_node *node)
 	return (pos);
 }
 
-static void	push_chunk(t_node **a, t_node **b, t_ops *ops, int min_idx,
-		int max_idx)
-{
-	t_node	*cur;
-	int		pos;
-	int		half;
-
-	while (1)
-	{
-		cur = *a;
-		pos = 0;
-		while (cur)
-		{
-			if (cur->index >= min_idx && cur->index <= max_idx)
-				break ;
-			cur = cur->next;
-			pos++;
-		}
-		if (!cur)
-			break ;
-		half = stack_size(*a) / 2;
-		if (pos <= half)
-			while ((*a)->index < min_idx || (*a)->index > max_idx)
-				ra(a, ops);
-		else
-			while ((*a)->index < min_idx || (*a)->index > max_idx)
-				rra(a, ops);
-		pb(a, b, ops);
-	}
-}
-
 static void	pull_all(t_node **a, t_node **b, t_ops *ops)
 {
 	t_node	*max_node;
@@ -92,46 +61,52 @@ static void	pull_all(t_node **a, t_node **b, t_ops *ops)
 	}
 }
 
-static int	get_chunk_count(int size)
+static void	push_chunk(t_node **a, t_node **b, t_ops *ops, int range[2])
 {
-	if (size <= 10)
-		return (2);
-	if (size <= 50)
-		return (5);
-	if (size <= 200)
-		return (8);
-	return (11);
+	t_node	*cur;
+	int		pos;
+
+	cur = *a;
+	while (cur && (cur->index < range[0] || cur->index > range[1]))
+		cur = cur->next;
+	while (cur)
+	{
+		pos = node_position(*a, cur);
+		if (pos <= stack_size(*a) / 2)
+			while ((*a)->index < range[0] || (*a)->index > range[1])
+				ra(a, ops);
+		else
+			while ((*a)->index < range[0] || (*a)->index > range[1])
+				rra(a, ops);
+		pb(a, b, ops);
+		cur = *a;
+		while (cur && (cur->index < range[0] || cur->index > range[1]))
+			cur = cur->next;
+	}
 }
 
 void	chunk_sort(t_node **a, t_node **b, t_ops *ops)
 {
 	int	size;
-	int	chunk_count;
-	int	chunk_size;
-	int	min_idx;
-	int	max_idx;
+	int	chunks;
+	int	range[2];
 	int	i;
 
 	size = stack_size(*a);
 	if (is_sorted(*a))
 		return ;
 	if (size <= 5)
-	{
-		simple_sort(a, b, ops);
-		return ;
-	}
-	chunk_count = get_chunk_count(size);
-	chunk_size = size / chunk_count;
-	min_idx = 0;
+		return (simple_sort(a, b, ops));
+	chunks = (size <= 10) * 2 + (size > 10 && size <= 50) * 5 + (size > 50
+			&& size <= 200) * 8 + (size > 200) * 11;
+	range[0] = 0;
 	i = 0;
-	while (i < chunk_count)
+	while (i < chunks)
 	{
-		if (i == chunk_count - 1)
-			max_idx = size - 1;
-		else
-			max_idx = min_idx + chunk_size - 1;
-		push_chunk(a, b, ops, min_idx, max_idx);
-		min_idx = max_idx + 1;
+		range[1] = (i == chunks - 1) * (size - 1) + (i != chunks - 1)
+			* (range[0] + (size / chunks) - 1);
+		push_chunk(a, b, ops, range);
+		range[0] = range[1] + 1;
 		i++;
 	}
 	pull_all(a, b, ops);

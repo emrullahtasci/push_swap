@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   radix_sort.c                                       :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: etasci <etasci@student.42kocaeli.com.tr    +#+  +:+       +#+        */
+/*   By: mkotan <mkotan@student.42kocaeli.com.tr    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2026/03/24 18:13:37 by etasci            #+#    #+#             */
-/*   Updated: 2026/03/25 16:38:51 by etasci           ###   ########.fr       */
+/*   Updated: 2026/03/25 17:18:20 by mkotan           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -30,17 +30,33 @@ static int	get_max_bits(t_node *a)
 	return (bits);
 }
 
+static void	radix_pass(t_node **a, t_node **b, t_ops *ops, int bit)
+{
+	int	size;
+	int	j;
+
+	size = stack_size(*a);
+	j = 0;
+	while (j < size)
+	{
+		if (((*a)->index >> bit) & 1)
+			ra(a, ops);
+		else
+			pb(a, b, ops);
+		j++;
+	}
+	while (*b)
+		pa(a, b, ops);
+}
+
 void	radix_sort(t_node **a, t_node **b, t_ops *ops)
 {
 	int	i;
-	int	j;
-	int	size;
 	int	max_bits;
 
 	if (is_sorted(*a))
 		return ;
-	size = stack_size(*a);
-	if (size <= 100)
+	if (stack_size(*a) <= 100)
 	{
 		chunk_sort(a, b, ops);
 		return ;
@@ -48,18 +64,5 @@ void	radix_sort(t_node **a, t_node **b, t_ops *ops)
 	max_bits = get_max_bits(*a);
 	i = 0;
 	while (i < max_bits)
-	{
-		j = 0;
-		while (j < size)
-		{
-			if (((*a)->index >> i) & 1)
-				ra(a, ops);
-			else
-				pb(a, b, ops);
-			j++;
-		}
-		while (*b)
-			pa(a, b, ops);
-		i++;
-	}
+		radix_pass(a, b, ops, i++);
 }
