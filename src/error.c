@@ -6,17 +6,17 @@
 /*   By: etasci <etasci@student.42kocaeli.com.tr    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2026/03/24 15:43:05 by etasci            #+#    #+#             */
-/*   Updated: 2026/03/24 15:44:59 by etasci           ###   ########.fr       */
+/*   Updated: 2026/03/25 16:15:12 by etasci           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "push_swap.h"
 
-void error(t_node **a, t_node **b)
+void	error(t_node **a, t_node **b)
 {
 	if (a)
 		free_stack(a);
-	if(b)
+	if (b)
 		free_stack(b);
 	write(2, "Error\n,", 6);
 	exit(1);
