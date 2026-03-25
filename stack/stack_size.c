@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   stack_size.c                                       :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: etasci <etasci@student.42kocaeli.com.tr    +#+  +:+       +#+        */
+/*   By: mkotan <mkotan@student.42kocaeli.com.tr    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2026/03/24 05:07:10 by etasci            #+#    #+#             */
-/*   Updated: 2026/03/24 05:35:08 by etasci           ###   ########.fr       */
+/*   Updated: 2026/03/25 17:25:46 by mkotan           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -24,6 +24,7 @@ int	stack_size(t_node *stack)
 	}
 	return (i);
 }
+
 int	is_sorted(t_node *stack)
 {
 	while (stack && stack->next)
