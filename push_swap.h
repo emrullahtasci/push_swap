@@ -3,15 +3,19 @@
 /*                                                        :::      ::::::::   */
 /*   push_swap.h                                        :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: etasci <etasci@student.42kocaeli.com.tr    +#+  +:+       +#+        */
+/*   By: mkotan <mkotan@student.42kocaeli.com.tr    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2026/03/11 22:57:26 by mkotan            #+#    #+#             */
-/*   Updated: 2026/03/25 16:35:43 by etasci           ###   ########.fr       */
+/*   Updated: 2026/03/25 17:20:13 by mkotan           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #ifndef PUSH_SWAP_H
 # define PUSH_SWAP_H
+
+# include "libft/libft.h"
+# include <stdlib.h>
+# include <unistd.h>
 
 typedef struct s_node
 {
@@ -19,20 +23,6 @@ typedef struct s_node
 	int				index;
 	struct s_node	*next;
 }					t_node;
-
-typedef enum e_strategy
-{
-	SIMPLE,
-	MEDIUM,
-	COMPLEX,
-	ADAPTIVE
-}					t_strategy;
-
-typedef struct s_config
-{
-	t_strategy		strategy;
-	int				bench;
-}					t_config;
 
 typedef struct s_ops
 {
@@ -69,6 +59,12 @@ t_node				*parse_args(int argc, char **argv, t_config *cfg);
 void				assign_index(t_node *stack);
 void				error_exit(t_node **a, t_node **b);
 
+/* parse helpers */
+int					is_flag(char *s, t_config *cfg);
+int					is_valid_number(char *s);
+long				ft_atol(char *s);
+int					has_duplicate(t_node *stack, int value);
+
 /* stack */
 t_node				*stack_new(int value);
 void				stack_add_back(t_node **stack, t_node *node);
@@ -94,6 +90,10 @@ void				simple_sort(t_node **a, t_node **b, t_ops *ops);
 void				chunk_sort(t_node **a, t_node **b, t_ops *ops);
 void				radix_sort(t_node **a, t_node **b, t_ops *ops);
 void				adaptive_sort(t_node **a, t_node **b, t_ops *ops);
+void				run_strategy(t_node **a, t_node **b, t_ops *ops,
+						t_config *cfg);
+char				*strategy_name(t_config *cfg);
+char				*strategy_complexity(t_node *a, t_config *cfg);
 
 /* helpers */
 t_node				*find_min(t_node *stack);
