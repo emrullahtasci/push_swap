@@ -6,7 +6,7 @@
 /*   By: etasci <etasci@student.42kocaeli.com.tr    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2026/03/11 22:57:26 by mkotan            #+#    #+#             */
-/*   Updated: 2026/03/25 15:56:30 by etasci           ###   ########.fr       */
+/*   Updated: 2026/03/25 16:35:43 by etasci           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -68,7 +68,6 @@ typedef struct s_config
 t_node				*parse_args(int argc, char **argv, t_config *cfg);
 void				assign_index(t_node *stack);
 void				error_exit(t_node **a, t_node **b);
-
 
 /* stack */
 t_node				*stack_new(int value);
