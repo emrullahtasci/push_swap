@@ -6,7 +6,7 @@
 /*   By: mkotan <mkotan@student.42kocaeli.com.tr    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2026/03/11 22:57:26 by mkotan            #+#    #+#             */
-/*   Updated: 2026/03/25 17:20:13 by mkotan           ###   ########.fr       */
+/*   Updated: 2026/03/27 17:21:52 by mkotan           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -58,6 +58,7 @@ typedef struct s_config
 t_node				*parse_args(int argc, char **argv, t_config *cfg);
 void				assign_index(t_node *stack);
 void				error_exit(t_node **a, t_node **b);
+char				**handle_split(char **argv, int *ac);
 
 /* parse helpers */
 int					is_flag(char *s, t_config *cfg);
