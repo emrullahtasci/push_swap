@@ -6,7 +6,7 @@
 /*   By: mkotan <mkotan@student.42kocaeli.com.tr    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2026/03/24 15:45:43 by etasci            #+#    #+#             */
-/*   Updated: 2026/03/27 16:28:12 by mkotan           ###   ########.fr       */
+/*   Updated: 2026/03/27 17:21:24 by mkotan           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -74,4 +74,32 @@ t_node	*parse_args(int argc, char **argv, t_config *cfg)
 		i++;
 	}
 	return (stack);
+}
+
+char	**handle_split(char **argv, int *ac)
+{
+	char	**s;
+	char	**new;
+	int		i;
+
+	s = ft_split(argv[1], ' ');
+	if (!s)
+		return (NULL);
+	i = 0;
+	while (s[i])
+		i++;
+	*ac = i + 1;
+	new = malloc(sizeof(char *) * (*ac + 1));
+	if (!new)
+		return (NULL);
+	new[0] = argv[0];
+	i = 0;
+	while (s[i])
+	{
+		new[i + 1] = s[i];
+		i++;
+	}
+	new[*ac] = NULL;
+	free(s);
+	return (new);
 }
