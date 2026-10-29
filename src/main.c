@@ -37,7 +37,7 @@ static void	benchmark_if_needed(t_node *a, t_config *cfg, t_ops *ops,
 	if (!cfg->bench)
 		return ;
 	name = strategy_name(cfg);
-	complexity = strategy_complexity(a, cfg);
+	complexity = strategy_complexity(a, cfg, disorder);
 	print_benchmark(disorder, name, complexity, ops);
 }
 

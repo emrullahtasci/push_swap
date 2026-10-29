@@ -94,7 +94,8 @@ void				adaptive_sort(t_node **a, t_node **b, t_ops *ops);
 void				run_strategy(t_node **a, t_node **b, t_ops *ops,
 						t_config *cfg);
 char				*strategy_name(t_config *cfg);
-char				*strategy_complexity(t_node *a, t_config *cfg);
+char				*strategy_complexity(t_node *a, t_config *cfg,
+						double disorder);
 
 /* helpers */
 t_node				*find_min(t_node *stack);

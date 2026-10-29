@@ -70,6 +70,8 @@ long	ft_atol(char *s)
 	while (s[i] >= '0' && s[i] <= '9')
 	{
 		result = result * 10 + (s[i] - '0');
+		if (result > 2147483648L)
+			return (result * sign);
 		i++;
 	}
 	return (result * sign);

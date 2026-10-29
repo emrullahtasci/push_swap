@@ -23,18 +23,15 @@ char	*strategy_name(t_config *cfg)
 	return ("Adaptive");
 }
 
-char	*strategy_complexity(t_node *a, t_config *cfg)
+char	*strategy_complexity(t_node *a, t_config *cfg, double disorder)
 {
-	double	disorder;
-
 	if (cfg->strategy == SIMPLE)
 		return ("O(n^2)");
 	if (cfg->strategy == MEDIUM)
 		return ("O(n*sqrt(n))");
 	if (cfg->strategy == COMPLEX)
 		return ("O(n log n)");
-	disorder = compute_disorder(a);
-	if (disorder < 0.2)
+	if (stack_size(a) <= 5 || disorder < 0.2)
 		return ("O(n^2)");
 	if (disorder < 0.5)
 		return ("O(n*sqrt(n))");
